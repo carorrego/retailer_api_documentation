@@ -253,17 +253,17 @@
 
 <p>Dear partner,</p>
 
-<p>You made it - in front of you lies the most loved API in transporation industry. Actually it is mostly the love of our dev and product team so far due to it being super brand new, but hope you will fall in love soon too. Anytime feel free to write to me personally to partner@distribusion.com in case you are unhappy or our baby is not behaving as you expected.</p>
+<p>You made it - in front of you lies the most loved API in transporation industry. Actually it is mostly the love of our dev and product team so far due to it being super brand new, but hope you will fall in love soon too. Anytime feel free to write to me personally to <a href="partner@distribusion.com">mailto:partner@distribusion.com</a> in case you are unhappy or our baby is not behaving as you expected.</p>
 
 <p>You can trust on us working hard everyday to make it your most loved product.</p>
 
 <p>Your Distribusion IT team</p>
 
-<p>[Picture of the whole Distribusion team]</p>
+<p><img src="images/distribusion-it-team.png" alt="alt text" /></p>
 
-<p>You can use our API to access Distribusion content and book bus rides. We have put a lot of thoughts into making it as easy as possible to integrate with us. Have fun and share your feedback with us! </p>
+<p>You can use our API to access Distribusion content and book bus rides. We have put a lot of thoughts into making it as easy as possible to integrate with us. Have fun and share your feedback with us!</p>
 
-<p>In this new API, Distribusion aim to standardize the stations codes across the bus industry, the same way IATA did in the flight industry. Our stations code are designed to represent specific locations using a set of 8 capital letters. The construction of such code follow a simple logic: </p>
+<p>In this new API, Distribusion aim to standardize the stations codes across the bus industry, the same way IATA did in the flight industry. Our stations code are designed to represent specific locations using a set of 8 capital letters. The construction of such code follow a simple logic:</p>
 
 <ul>
 <li>The first two letters represent the country</li>
@@ -273,12 +273,12 @@
 
 <p>Example: GBLONVSA - Great Britain / London / Victoria station</p>
 
-<p>When integrating and testing our API, please use the following URL: <a href="https://api-demo.distribusion.com/retailers/v3">https://api-demo.distribusion.com/retailers/v3</a>
-Documentation for the API v2 can still be found at <a href="https://api-demo.distribusion.com/reseller/v2/docs">Distribusion API</a> </p>
+<p>When integrating and testing our API, please use the following URL: <code class="prettyprint">https://api-demo.distribusion.com/retailers/v3</code>
+Documentation for the API v2 can still be found at <a href="https://api-demo.distribusion.com/reseller/v2/docs">https://api-demo.distribusion.com/reseller/v2/docs</a></p>
 
 <h1 id="getting-started">Getting Started</h1>
 
-<p>When performing a booking through Distribusion API, they are multiple steps that are required. This section is dedicated to describe the standard flow, necessary to search for connections, retrieve availability and prices, build the booking form and perform a booking. </p>
+<p>When performing a booking through Distribusion API, they are multiple steps that are required. This section is dedicated to describe the standard flow, necessary to search for connections, retrieve availability and prices, build the booking form and perform a booking.</p>
 
 <p><img src="images/API_V3.0_Workflow.png" alt="alt text" />  </p>
 
@@ -292,19 +292,19 @@ Documentation for the API v2 can still be found at <a href="https://api-demo.dis
 
 <aside class="success">
 Remember — to query information from our API, you need to get your own API key!
-</aside> 
-
-<h2 id="confirm-price-and-availability">Confirm Price and Availability</h2>
-
-<p>As <a href="https://api-demo.distribusion.com/retailers/v3/docs/#find">connections#find</a> provides the cheapest adult price, it is some time necessary to confirm the price of specific passenger types by calling <a href="https://api-demo.distribusion.com/retailers/v3/docs/#vacancy">connections#vacancy</a>. This call is also recommended prior to perform a booking, in order to ensure the prices and availability are still up to date. </p>
+</aside>
 
 <h2 id="build-a-booking-form">Build a Booking Form</h2>
 
-<p>In order to accomodate the specific requirements of each marketing carrier and increase conversion rate, we also deliver a dynamic booking form. Mandatory information as well as the validation rules applied to each parameters are provided through our <a href="https://api-demo.distribusion.com/retailers/v3/docs/#form-schema">bookings#form_schema</a> endpoint. </p>
+<p>In order to accomodate the specific requirements of each marketing carrier and increase conversion rate, we also deliver a dynamic booking form. Mandatory information as well as the validation rules applied to each parameters are provided through our <a href="https://api-demo.distribusion.com/retailers/v3/docs/#form-schema">bookings#form_schema</a> endpoint.</p>
+
+<h2 id="confirm-price-and-availability">Confirm Price and Availability</h2>
+
+<p>As <a href="https://api-demo.distribusion.com/retailers/v3/docs/#find">connections#find</a> provides the cheapest adult price, it is some time necessary to confirm the price of specific passenger types by calling <a href="https://api-demo.distribusion.com/retailers/v3/docs/#vacancy">connections#vacancy</a>. This call is also recommended prior to perform a booking, in order to ensure the prices and availability are still up to date.</p>
 
 <h2 id="create-a-booking">Create a Booking</h2>
 
-<p>After gathering information on a specific connection and the passenger information, you can now send a booking request towards Distribusion&rsquo;s API on <a href="https://api-demo.distribusion.com/retailers/v3/docs/#create">bookings#create</a>. The parameters to be sent are dependant of the marketing carrier and should have been delivered to you through the <a href="https://api-demo.distribusion.com/retailers/v3/docs/#form-schema">bookings#form_schema</a>. In case any information is missing, the API will recognise it and inform you accordingly. </p>
+<p>After gathering information on a specific connection and the passenger information, you can now send a booking request towards Distribusion&rsquo;s API on <a href="https://api-demo.distribusion.com/retailers/v3/docs/#create">bookings#create</a>. The parameters to be sent are dependant of the marketing carrier and should have been delivered to you through the <a href="https://api-demo.distribusion.com/retailers/v3/docs/#form-schema">bookings#form_schema</a>. In case any information is missing, the API will recognise it and inform you accordingly.</p>
 
 <h2 id="postman">Postman</h2>
 
@@ -962,7 +962,7 @@ Remember — to query information from our API, you need to get your own API key
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>To create a booking, you will need to retrieve specific information from the customer. In order to do so, you can render a booking form, which is specific to a certain connection and or marketing carrier. This endpoint will deliver you the JSON schema, describing the necessary parameters needed to perform a booking. </p>
+<p>To create a booking, you will need to retrieve specific information from the customer. In order to do so, you can render a booking form, which is specific to a certain connection and or marketing carrier. This endpoint will deliver you the JSON schema, describing the necessary parameters needed to perform a booking.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2018,7 +2018,7 @@ Remember — to query information from our API, you need to get your own API key
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint enable users to retrieve detailed information about the cancellation of a specific booking. Note that not all marketing carriers offer cancellations and that in some case, the cancellation <code class="prettyprint">fee</code> do not reflect the flexibility of the terms and conditions due to technical reasons. The current workflow only allow a full (or partial) refund of the booking, no options for vouchers are currently available. </p>
+<p>This endpoint enable users to retrieve detailed information about the cancellation of a specific booking. Note that not all marketing carriers offer cancellations and that in some case, the cancellation <code class="prettyprint">fee</code> do not reflect the flexibility of the terms and conditions due to technical reasons. The current workflow only allow a full (or partial) refund of the booking, no options for vouchers are currently available.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2211,7 +2211,7 @@ Remember — to query information from our API, you need to get your own API key
 
     </span><span class="err">.....</span><span class="w">
 </span></code></pre>
-<p>This endpoint provides a list of marketing carriers with their trade name and code. </p>
+<p>This endpoint provides a list of marketing carriers with their trade name and code.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2297,7 +2297,7 @@ Remember — to query information from our API, you need to get your own API key
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint enable users to retrieve detailed information about marketing carriers, such as passenger types, cancellations conditions, terms &amp; conditions, etc. </p>
+<p>This endpoint enable users to retrieve detailed information about marketing carriers, such as passenger types, cancellations conditions, terms &amp; conditions, etc.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2434,7 +2434,7 @@ Remember — to query information from our API, you need to get your own API key
 
       </span><span class="err">.....</span><span class="w">
 </span></code></pre>
-<p>This endpoint enable users to retrieve detailed information about stations, such as name, id, GPS location, address and description. </p>
+<p>This endpoint enable users to retrieve detailed information about stations, such as name, id, GPS location, address and description.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2880,9 +2880,33 @@ Remember — to query information from our API, you need to get your own API key
 
           <h1 id="dictionary">Dictionary</h1>
 
-<p><strong>Operating Carriers</strong>: Operating carriers are the entity actually driving the bus. </p>
+<p><strong>Booking Fee</strong>: A fee that is charged by a marketing carrier to the customer in the booking process. It is added on top of all ticket and extra prices and is independent of the amount of passengers (eg. National Express adds a pound on every booking made), not to confuse with Distribusion transaction fee.</p>
 
-<p><strong>Marketing Carriers</strong>: Marketing carriers are the entity selling operating carriers ticket. The sales are binded by their own terms and conditions. </p>
+<p><strong>Carrier</strong>: A Distribusion defined term to identify a Distribusion coded transporation companies.The Carrier can take up two roles within a trip: Marketing Carrier or Operating Carrier. Both is identified with the same code.</p>
+
+<p><strong>Commission</strong>: Form of payment to a retailer, we have 3 different commission types (OTAs, STAs, Affiliate). All of them are defined as net percentage of gross ticket value.</p>
+
+<p><strong>Credit Note</strong>: All commissions which retailers receive from Distribusion each month. provided in a PDF format.</p>
+
+<p><strong>Demand Note</strong>: OTAs and STAs are collecting the ticket revenues of consumers booking trips. A Demand Note is a consolidates statement of these ticket revenue of retailers provided as PDF. It also includes revenues from cancellations.</p>
+
+<p><strong>IATA</strong>: International Air Transport Association (IATA),  IATA supports airline activity and helps formulate industry policy and standards.</p>
+
+<p><strong>IATA Code</strong>: 3-letter Codes for airports, started by IATA organization 70 years ago to standardize and harmonize locale of airports for the entire industry.</p>
+
+<p><strong>Marketing Carriers</strong>: Carrier which is defining the fare rules towards the customer and legally liable for the success of a booked trip (mostly also responsible for customer service). Marketing Carriers are also branding the ticket and using white label products in their solutions.</p>
+
+<p><strong>OTA</strong>: Short for: Online Travel Agency - website selling (not just showing) travel products to end consumers or business customers. Usually conduct payments and customer service to a certain degree. Distribusion supports OTA to perform &ldquo;full booking integration&rdquo; via the API.</p>
+
+<p><strong>Operating Carriers</strong>: Operating carriers are the entity actually driving the bus.</p>
+
+<p><strong>PAX</strong>: Abbreviation of &ldquo;Persons approximately&rdquo;, used in tourism for the number of passengers.</p>
+
+<p><strong>STA</strong>: Short for Stationary Travel Agencies.</p>
+
+<p><strong>Travel Agency</strong>: Online or Offline agency which sells tourism and mobility related products online (OTA) and Offline (STA).</p>
+
+<p><strong>Vacancy</strong>: Activity to derive prices for a selected connections or to verify availability,  based on a selected amount of pax (including the specific types, such as child, adult, etc.)</p>
 
       </div>
       <div class="dark-box">
