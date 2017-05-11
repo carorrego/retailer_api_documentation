@@ -319,11 +319,12 @@ Remember — in order to query information from our API, you need to get your ow
 <p>To authorize, use this code:</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Api-Key: AIzaSyBGEpZdxbufTSpcIxWXoRjSdKu6ZctiuyI"</span>
+curl  <span class="s1">'https://api.distribusion.com/retailers/v3/#'</span> <span class="se">\</span>
+      --header <span class="s1">'Accept: application/vnd.api+json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">AIzaSyBGEpZdxbufTSpcIxWXoRjSdKu6ZctiuyI</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ’</code> with your API key.</p>
 </blockquote>
 
 <p>Distribusion uses API keys to allow access to the API content and perform bookings. You can register a new Distribusion API key by contacting us at <a href="mailto:partner@distribusion.com">partner@distribusion.com</a>.</p>
@@ -339,7 +340,9 @@ You must replace <code>AIzaSyBGEpZdxbufTSpcIxWXoRjSdKu6ZctiuyI</code> with your 
 <h1 id="connections">Connections</h1>
 
 <h2 id="find">Find</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/connections/find?departure_stations%5B%5D=DEBERZOB&amp;arrival_stations%5B%5D=DEBONHBF&amp;departure_date=2017-01-01&amp;pax=1&amp;locale=en&amp;currency=EUR'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl    --globoff <span class="s1">'https://api-demo.distribusion.com/retailers/v3/connections/find?departure_stations[]=DEDUSZOB&amp;arrival_stations[]=DEWEZFLU&amp;departure_date=2017-05-29&amp;pax=1&amp;locale=en&amp;currency=EUR'</span> <span class="se">\</span>
+        --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+        --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -600,7 +603,9 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h2 id="vacancy">Vacancy</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/connections/vacancy?marketing_carrier=SPBS&amp;departure_station=DEBERZOB&amp;arrival_station=DEBONHBF&amp;departure_time=2017-01-01T00:00&amp;arrival_time=2017-01-01T01:00&amp;pax=1&amp;locale=en&amp;currency=EUR'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  --globoff <span class="s1">'https://api-demo.distribusion.com/retailers/v3/connections/vacancy?marketing_carrier=JETB&amp;departure_station=DEDUSZOB&amp;arrival_station=DEWEZFLU&amp;departure_time=2017-05-29T14:00&amp;arrival_time=2017-05-29T15:30&amp;currency=EUR&amp;passengers[][pax]=1&amp;passengers[][type]=PNOR'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -663,19 +668,54 @@ Remember — to query information from our API, you need to get your own API key
 <td>Arrival time in ISO 8601 format without timezone yyyy-mm-ddThh:mm.</td>
 </tr>
 <tr>
-<td><code class="prettyprint">pax</code></td>
-<td>true</td>
-<td>Number of passengers - Integer in a range of 1..9.</td>
-</tr>
-<tr>
-<td><code class="prettyprint">locale</code></td>
-<td>true</td>
-<td>2-letter alphanumeric lowercase code, according to ISO 639-1 standard.</td>
-</tr>
-<tr>
 <td><code class="prettyprint">currency</code></td>
 <td>true</td>
 <td>3-letter alphanumeric uppercase code, according to ISO 4217 standard.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">passengers</code></td>
+<td>true</td>
+<td>Array</td>
+</tr>
+<tr>
+<td><code class="prettyprint">fist_name</code></td>
+<td>true</td>
+<td>First name of the passenger, 1-50-letter alphanumeric string.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">last_name</code></td>
+<td>true</td>
+<td>Last name of the customer, 1-50-letter alphanumeric string.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">type</code></td>
+<td>true</td>
+<td>Passenger type. 4-letter alphanumeric uppercase code, available codes can be obtained from <code class="prettyprint">GET /marketing_carriers</code>.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code class="prettyprint">extras</code></td>
+<td>false</td>
+<td>Array</td>
+</tr>
+<tr>
+<td><code class="prettyprint">quantity</code></td>
+<td>true</td>
+<td>Integer in a range of 1..999.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">type</code></td>
+<td>true</td>
+<td>Extra type. 4-letter alphanumeric uppercase code, available codes can be obtained from <code class="prettyprint">GET /marketing_carriers</code>.</td>
 </tr>
 </tbody></table>
 
@@ -784,7 +824,9 @@ Remember — to query information from our API, you need to get your own API key
 <h1 id="bookings">Bookings</h1>
 
 <h2 id="form-schema">Form Schema</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/bookings/form_schema?marketing_carrier=SPBS'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/bookings/form_schema?marketing_carrier=JETB'</span> <span class="se">\</span>
+      --header <span class="s1">'Accept: application/vnd.api+json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1028,7 +1070,10 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h2 id="create">Create</h2>
-<pre class="highlight shell tab-shell"><code>curl -i --data <span class="s1">'{"marketing_carrier": "SPBS","departure_station": "DEBERZOB","arrival_station": "DEBONHBF","departure_time": "2017-01-01T00:00","arrival_time": "2017-01-01T01:00","title": "mr","first_name": "John","last_name": "Doe","email": "john.doe@customer.example","phone": "+0 123 456 78 90","city": "Berlin","zip_code": "10123","street_and_number": "1st str.","execute_payment": true,"payment_method": "demand_note","payment_token": "da0b3dfb-9cdf-4c17-8549-e179bad45765","payer_id": "7E7MGXCWTTKK2","total_price": "1100","pax": 1,"flight_number": "141DE","terms_accepted": true,"locale": "en","currency": "EUR","send_customer_email": true,"passengers": [{"first_name": "Janeth","last_name": "Doe","type": "ADLT"}],"extras": [{"quantity": 1,"type": "COFE"}]}'</span> <span class="s1">'https://api.distribusion.com/retailers/v3/bookings/create'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/bookings/create'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span> <span class="se">\</span>
+      --data <span class="s1">'{"marketing_carrier": "JETB", "departure_station": "DEDUSZOB", "arrival_station": "DEWEZFLU", "departure_time": "2017-05-29T14:00", "arrival_time": "2017-05-29T15:30", "retailer_partner_number": "222222", "title": "mr","first_name": "Balibalo", "last_name": "Bateau", "email": "quentin@mail.com", "phone": "4915237601929", "city": "Berlin", "zip_code": "10123", "street_and_number": "Berlinstr. 23", "execute_payment": false, "payment_method": "demand_note", "payer_id": "123455", "total_price": 1500, "pax": 1, "terms_accepted": true, "locale": "en", "currency": "EUR", "send_customer_email": false, "passengers":[{"first_name": "Balibalo", "last_name": "Bateau", "type": "PNOR"}]}'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1042,7 +1087,7 @@ Remember — to query information from our API, you need to get your own API key
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ij8CE-9Wo-cQvrj7D5gQzA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t81uBDWA0eH8dr1RReUGog"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bookings"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"departure_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-29T14:00"</span><span class="p">,</span><span class="w">
@@ -1687,7 +1732,9 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h2 id="show">Show</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/bookings/show?booking=ij8CE-9Wo-cQvrj7D5gQzA'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/bookings/tD01cTMGVAK-b7FBzizCPg'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1701,7 +1748,7 @@ Remember — to query information from our API, you need to get your own API key
     </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ij8CE-9Wo-cQvrj7D5gQzA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"t81uBDWA0eH8dr1RReUGog"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bookings"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"departure_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-29T14:00"</span><span class="p">,</span><span class="w">
@@ -1939,7 +1986,9 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h2 id="tickets">Tickets</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/bookings/ij8CE-9Wo-cQvrj7D5gQzA/tickets'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/bookings/t81uBDWA0eH8dr1RReUGog/tickets'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <p>This endpoint is dedicated to retailers sending their own confirmation email. If you have set <code class="prettyprint">send_customer_email</code> to <code class="prettyprint">true</code>, you do not need this endpoint. The ticket either has one page containing the information of all the passengers, or it consists of one page per passenger (in PDF format).</p>
 
@@ -1996,7 +2045,9 @@ Remember — to query information from our API, you need to get your own API key
 <h1 id="cancellations">Cancellations</h1>
 
 <h2 id="conditions">Conditions</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/cancellations/conditions?booking=ij8CE-9Wo-cQvrj7D5gQzA'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/cancellations/conditions?booking=t81uBDWA0eH8dr1RReUGog'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span> 
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2041,7 +2092,7 @@ Remember — to query information from our API, you need to get your own API key
 </tr>
 </tbody></table>
 
-<h2 id="client-errors">Client errors</h2>
+<h3 id="errors">Errors</h3>
 
 <table><thead>
 <tr>
@@ -2080,7 +2131,10 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h2 id="create">Create</h2>
-<pre class="highlight shell tab-shell"><code>curl -i --data <span class="s1">'{"booking": "2PoHhetdJE02kRe1DhcgOg"}'</span> <span class="s1">'https://api.distribusion.com/retailers/v3/cancellations/create'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/cancellations/create'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span> <span class="se">\</span>
+      --data <span class="s1">'{"booking": "t81uBDWA0eH8dr1RReUGog"}'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2126,7 +2180,7 @@ Remember — to query information from our API, you need to get your own API key
 </tr>
 </tbody></table>
 
-<h2 id="client-errors">Client errors</h2>
+<h3 id="errors">Errors</h3>
 
 <table><thead>
 <tr>
@@ -2175,7 +2229,9 @@ Remember — to query information from our API, you need to get your own API key
 <h1 id="marketing-carriers">Marketing Carriers</h1>
 
 <h2 id="index">Index</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/marketing_carriers'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/marketing_carriers'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2237,7 +2293,9 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h2 id="show">Show</h2>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/marketing_carriers/JETB?locale=en&amp;currency=EUR'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/marketing_carriers/JETB?locale=en&amp;currency=EUR'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -2376,7 +2434,9 @@ Remember — to query information from our API, you need to get your own API key
 </tbody></table>
 
 <h1 id="stations">Stations</h1>
-<pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.distribusion.com/retailers/v3/stations?locale=en'</span> --header <span class="s1">'Accept: application/vnd.api+json, Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span>
+<pre class="highlight shell tab-shell"><code>curl  <span class="s1">'https://api-demo.distribusion.com/retailers/v3/stations?locale=en'</span> <span class="se">\</span>
+      --header <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+      --header <span class="s1">'Api-Key: H4gtqUn04qDh7mmZpFJYmmcW7JVw7hMIaCUcdWhZ'</span> 
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
